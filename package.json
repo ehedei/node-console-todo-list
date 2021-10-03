@@ -1,0 +1,23 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehedei/node-console-todo-list.git"
+  },
+  "keywords": [],
+  "author": "Ehedei Hernández García",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ehedei/node-console-todo-list/issues"
+  },
+  "homepage": "https://github.com/ehedei/node-console-todo-list#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
