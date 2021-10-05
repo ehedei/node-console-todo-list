@@ -29,7 +29,7 @@ const pauseOptions = [
 const showMenu = async () => {
   console.clear()
   console.log('='.repeat(21).green)
-  console.log('===== Main Menu ====='.green)
+  console.log('===== Main Menu ====='.white)
   console.log('='.repeat(21).green + '\n')
 
   const { option } = await inquirer.prompt(options)
@@ -44,4 +44,21 @@ const pause = async () => {
   return pause
 }
 
-module.exports = { showMenu, pause }
+const input = async (message) => {
+  const question = [
+    {
+      type: 'input',
+      name: 'answer',
+      message,
+      validate(value) {
+        if (value.length === 0) { return 'Please, insert a value' }
+        return true
+      }
+    }
+  ]
+
+  const { answer } = await inquirer.prompt(question)
+  return answer
+}
+
+module.exports = { showMenu, pause, input }

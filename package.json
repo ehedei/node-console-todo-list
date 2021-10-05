@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ehedei/node-console-todo-list#readme",
   "dependencies": {
     "colors": "^1.4.0",
-    "inquirer": "^8.1.5"
+    "inquirer": "^8.1.5",
+    "uuid": "^8.3.2"
   }
 }
