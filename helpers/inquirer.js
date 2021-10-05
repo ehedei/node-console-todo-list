@@ -13,7 +13,8 @@ const options = [
       { value: '4', name: `${'4.'.green} Show pending tasks` },
       { value: '5', name: `${'5.'.green} Complete task(s)` },
       { value: '6', name: `${'6.'.green} Delete task` },
-      { value: '0', name: `${'0.'.green} Exit` }
+      { value: '7', name: `${'0.'.green} Save changes and Exit` },
+      { value: '0', name: '7. Discard changes and Exit'.grey }
     ]
   }
 ]
@@ -61,4 +62,51 @@ const input = async (message) => {
   return answer
 }
 
-module.exports = { showMenu, pause, input }
+const selectTaskMenu = async (tasks = [], message) => {
+  const choices = tasks.map(task => { return { value: task.id, name: task.description }})
+
+  const options = [
+    {
+      type: 'checkbox',
+      name: 'selections',
+      message,
+      choices
+    }
+  ]
+
+  const { selections } = await inquirer.prompt(options)
+
+  return selections
+}
+
+const selectCompletedTaskMenu = async (tasks = [], message) => {
+  const choices = tasks.map(task => { return { value: task.id, name: task.description, checked: Boolean(task.dateCompleted) }})
+
+  const options = [
+    {
+      type: 'checkbox',
+      name: 'selections',
+      message,
+      choices
+    }
+  ]
+
+  const { selections } = await inquirer.prompt(options)
+
+  return selections
+}
+
+const askForSure = async () => {
+  const options = [
+    {
+      type: 'confirm',
+      name: 'sure',
+      message: 'Are you sure?'
+    }
+  ]
+
+  const { sure } = await inquirer.prompt(options)
+  return sure
+}
+
+module.exports = { showMenu, pause, input, selectTaskMenu, askForSure, selectCompletedTaskMenu }
