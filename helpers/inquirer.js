@@ -1,0 +1,47 @@
+const inquirer = require('inquirer')
+require('colors')
+
+const options = [
+  {
+    type: 'list',
+    name: 'option',
+    message: 'Please, select an option:',
+    choices: [
+      { value: '1', name: `${'1.'.green} Create task` },
+      { value: '2', name: `${'2.'.green} Show task list` },
+      { value: '3', name: `${'3.'.green} Show completed tasks` },
+      { value: '4', name: `${'4.'.green} Show pending tasks` },
+      { value: '5', name: `${'5.'.green} Complete task(s)` },
+      { value: '6', name: `${'6.'.green} Delete task` },
+      { value: '0', name: `${'0.'.green} Exit` }
+    ]
+  }
+]
+
+const pauseOptions = [
+  {
+    type: 'input',
+    name: 'pause',
+    message: `Press ${'ENTER'.green} to continue`,
+  }
+]
+
+const showMenu = async () => {
+  console.clear()
+  console.log('='.repeat(21).green)
+  console.log('===== Main Menu ====='.green)
+  console.log('='.repeat(21).green + '\n')
+
+  const { option } = await inquirer.prompt(options)
+
+  return option
+}
+
+const pause = async () => {
+  console.log('\n')
+  const { pause } = await inquirer.prompt(pauseOptions)
+
+  return pause
+}
+
+module.exports = { showMenu, pause }
